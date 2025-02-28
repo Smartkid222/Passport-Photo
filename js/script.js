@@ -82,22 +82,29 @@ function checkFlexGap() {
 }
 checkFlexGap();
 
-// Initialize Swiper
-var swiper = new Swiper('.mySwiper', {
-  loop: true,
-  autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-  },
-  pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-  },
-  navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-  },
-});
+/**
+ * add event on element
+ */
+
+const addEventOnElem = function (elem, type, callback) {
+  if (elem.length > 1) {
+    for (let i = 0; i < elem.length; i++) {
+      elem[i].addEventListener(type, callback);
+    }
+  } else {
+    elem.addEventListener(type, callback);
+  }
+}
+
+/**
+ * accordion toggle
+ */
+
+const accordionAction = document.querySelectorAll("[data-accordion-action]");
+
+const toggleAccordion = function () { this.classList.toggle("active"); }
+
+addEventOnElem(accordionAction, "click", toggleAccordion);
 
 // https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js
 
